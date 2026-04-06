@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="🛕_Jagannath_Code_Sanctum\EARTHLENS AI/logo1.png" alt="EarthLens AI" width="150px"/>
+<img src="earthlens_assets/logo1.png" alt="EarthLens AI" width="150px"/>
 
 <br/>
 
