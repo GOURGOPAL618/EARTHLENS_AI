@@ -78,49 +78,6 @@ No GIS software. No manual downloads. No complexity.
 
 ---
 
-## 🏗️ Architecture
-
-```txt
-earthlens-ai-platform/
-│
-├── app.py                              # Streamlit entry point
-├── requirements.txt
-├── download_dataset.py                 # Synthetic band generator
-├── README.md
-│
-├── earthlens_data/
-│   ├── raw_imagery/                    # Synthetic Sentinel-2 bands (.tif)
-│   └── processed_insights/             # Output GeoTIFFs + saved models
-│
-├── earthlens_core/
-│   ├── analysis_engine/
-│   │   ├── preprocessing.py            # Band loading, normalization, cloud masking
-│   │   ├── ndvi.py                     # NDVI calc, classification, stats
-│   │   ├── water_detection.py          # NDWI, MNDWI, combined water mask
-│   │   ├── change_detection.py         # Image differencing, CVA
-│   │   ├── burn_area.py                # NBR, dNBR, USGS severity classes
-│   │   └── urban_expansion.py          # NDBI, UI, IBI, expansion mapping
-│   │
-│   ├── intelligence_models/
-│   │   └── classifier.py               # RF + DT + LR, 11-feature engineering
-│   │
-│   ├── visualization_hub/
-│   │   ├── map_view.py                 # Folium interactive map generation
-│   │   └── plots.py                    # Plotly histograms, pies, dashboards
-│   │
-│   └── data_pipeline/
-│       ├── gee_api.py                  # Google Earth Engine integration
-│       ├── sentinel_api.py             # Sentinel Hub API
-│       └── landsat_api.py              # USGS M2M API
-│
-├── earthlens_lab/
-│   └── ndvi_experiment.ipynb           # Full ML experiment notebook
-│
-└── earthlens_config/
-    └── settings.py                     # Paths, constants, configuration
-
----
-
 ## 🔬 Analysis Modules
 
 ### 🌿 NDVI — Vegetation Health
