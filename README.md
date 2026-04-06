@@ -78,44 +78,69 @@ No GIS software. No manual downloads. No complexity.
 
 ---
 
-## 🏗️ Architecture
-earthlens-ai-platform/
-│
-├── app.py                              # Streamlit entry point
-├── requirements.txt
-├── download_dataset.py                 # Synthetic band generator
-├── README.md
-│
-├── earthlens_data/
-│   ├── raw_imagery/                    # Synthetic Sentinel-2 bands (.tif)
-│   └── processed_insights/            # Output GeoTIFFs + saved models
-│
-├── earthlens_core/
-│   ├── analysis_engine/
-│   │   ├── preprocessing.py           # Band loading, normalization, cloud masking
-│   │   ├── ndvi.py                    # NDVI calc, classification, stats
-│   │   ├── water_detection.py         # NDWI, MNDWI, combined water mask
-│   │   ├── change_detection.py        # Image differencing, CVA
-│   │   ├── burn_area.py               # NBR, dNBR, USGS severity classes
-│   │   └── urban_expansion.py         # NDBI, UI, IBI, expansion mapping
-│   │
-│   ├── intelligence_models/
-│   │   └── classifier.py              # RF + DT + LR, 11-feature engineering
-│   │
-│   ├── visualization_hub/
-│   │   ├── map_view.py                # Folium interactive map generation
-│   │   └── plots.py                   # Plotly histograms, pies, dashboards
-│   │
-│   └── data_pipeline/
-│       ├── gee_api.py                 # Google Earth Engine integration
-│       ├── sentinel_api.py            # Sentinel Hub API
-│       └── landsat_api.py             # USGS M2M API
-│
-├── earthlens_lab/
-│   └── ndvi_experiment.ipynb          # Full ML experiment notebook
-│
-└── earthlens_config/
-└── settings.py                    # Paths, constants, configuration
+## 🏗️ System Architecture
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Architecture-Microservices%20Style-blue?style=for-the-badge&logo=architecture&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Design-Pattern-Pipeline?style=for-the-badge&logo=databricks&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Deployment-Local%20%7C%20Cloud-success?style=for-the-badge&logo=cloudflare&logoColor=white"/>
+</p>
+
+### 🎯 High-Level Architecture
+
+```mermaid
+graph TB
+    subgraph "🖥️ USER INTERFACE LAYER"
+        A[🌐 Streamlit Dashboard<br/>app.py]
+        B[🎮 Sidebar Controls<br/>Mission Control]
+        C[📊 Main Display<br/>Results Panel]
+    end
+
+    subgraph "🔌 DATA PIPELINE LAYER"
+        D[📡 Data Source Manager]
+        E[🛰️ GEE API<br/>Sentinel-2/Landsat]
+        F[📁 Synthetic Data<br/>Local TIFFs]
+        G[🔴 Live APIs<br/>Sentinel Hub/USGS]
+    end
+
+    subgraph "⚙️ ANALYSIS ENGINE LAYER"
+        H[🌿 NDVI Analysis]
+        I[💧 Water Detection]
+        J[🔄 Change Detection]
+        K[🔥 Burn Area]
+        L[🏗️ Urban Expansion]
+    end
+
+    subgraph "🧠 INTELLIGENCE LAYER"
+        M[🤖 Random Forest<br/>🌲 100 trees]
+        N[🌳 Decision Tree<br/>max_depth=10]
+        O[📊 Logistic Regression<br/>baseline]
+    end
+
+    subgraph "🎨 VISUALIZATION LAYER"
+        P[🗺️ Folium Maps<br/>Interactive]
+        Q[📈 Plotly Charts<br/>Dynamic]
+        R[📋 DataFrames<br/>Tabular]
+    end
+
+    A --> B
+    A --> C
+    B --> D
+    D --> E
+    D --> F
+    D --> G
+    E --> H & I & J & K & L
+    F --> H & I & J & K & L
+    G --> H & I & J & K & L
+    H & I & J & K & L --> M & N & O
+    M & N & O --> P & Q & R
+    P & Q & R --> C
+
+    style A fill:#0a1a2a,stroke:#00ffff,stroke-width:3px,color:#fff
+    style D fill:#1a0a2a,stroke:#ff00ff,stroke-width:3px,color:#fff
+    style H fill:#0d2a1f,stroke:#00ff88,stroke-width:3px,color:#fff
+    style M fill:#2a1a0a,stroke:#ffaa00,stroke-width:3px,color:#fff
+    style P fill:#1a1a2a,stroke:#ff6600,stroke-width:3px,color:#fff
 
 ---
 
