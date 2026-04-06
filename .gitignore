@@ -1,0 +1,223 @@
+# ============================================================
+#  EARTHLENS AI — .gitignore
+#  Gourgopal Mohapatra | github.com/GOURGOPAL618
+# ============================================================
+
+
+# ------------------------------------------------------------
+#  PYTHON
+# ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+wheels/
+sdist/
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# Testing
+.pytest_cache/
+.tox/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+nosetests.xml
+test-results/
+
+
+# ------------------------------------------------------------
+#  JUPYTER NOTEBOOKS
+# ------------------------------------------------------------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+
+# ------------------------------------------------------------
+#  EARTHLENS AI — PROJECT SPECIFIC
+# ------------------------------------------------------------
+
+# Raw satellite imagery (large binary files — not for version control)
+earthlens_data/raw_imagery/
+earthlens_data/processed_insights/
+
+# Saved ML models
+earthlens_core/intelligence_models/saved_models/
+*.pkl
+*.joblib
+*.h5
+*.model
+
+# GeoTIFF outputs
+*.tif
+*.tiff
+*.geotiff
+
+# Exported maps and charts
+*.html
+exports/
+outputs/
+
+# Temporary analysis files
+temp/
+tmp/
+scratch/
+*.tmp
+
+
+# ------------------------------------------------------------
+#  SECRETS & CREDENTIALS — NEVER COMMIT THESE
+# ------------------------------------------------------------
+
+# Environment variables
+.env
+.env.*
+*.env
+!.env.example
+
+# Google Earth Engine credentials
+credentials.json
+gee_credentials.json
+service_account_key.json
+*_serviceaccount.json
+earthengine_token.json
+~/.config/earthengine/
+
+# Sentinel Hub / USGS API keys
+sentinel_config.py
+api_keys.py
+secrets.py
+config_private.py
+*_secret*
+*_private*
+
+# Any key or token file
+*.key
+*.pem
+*.token
+*.secret
+
+
+# ------------------------------------------------------------
+#  IDEs & EDITORS
+# ------------------------------------------------------------
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Spyder
+.spyderproject.cfg
+.spyproject/
+
+# Vim / Emacs
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+
+# ------------------------------------------------------------
+#  OS GENERATED
+# ------------------------------------------------------------
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+
+# ------------------------------------------------------------
+#  LOGS
+# ------------------------------------------------------------
+*.log
+logs/
+log/
+earthlens_logs/
+streamlit_logs/
+
+
+# ------------------------------------------------------------
+#  STREAMLIT
+# ------------------------------------------------------------
+.streamlit/secrets.toml
+
+
+# ------------------------------------------------------------
+#  LARGE FILES & DATASETS
+# ------------------------------------------------------------
+*.csv
+*.xlsx
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.nc
+*.hdf
+*.hdf5
+*.h5
+data/
+datasets/
+large_files/
+
+
+# ------------------------------------------------------------
+#  DOCS BUILD
+# ------------------------------------------------------------
+docs/_build/
+site/
