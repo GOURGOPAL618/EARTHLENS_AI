@@ -93,7 +93,7 @@ NDVI = (B08 - B04) / (B08 + B04)
 | Dense Vegetation | 0.6 → 1.0 | Tropical forest, healthy crops |
 
 <img src="earthlens_assets/ndvi_map.png" width="800">
----
+
 
 ### 💧 Water Detection
 NDWI  = (B03 - B08) / (B03 + B08)    →  Open water bodies
