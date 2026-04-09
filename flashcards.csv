@@ -1,0 +1,55 @@
+What is the primary objective of the EarthLens AI platform?,To bridge the gap between raw Earth observation data and actionable geospatial intelligence.
+Which three primary APIs does EarthLens AI use to connect to live satellite data?,"Google Earth Engine, Sentinel Hub, and the USGS M2M API."
+"In the context of satellite data, what is the 'Data Paradox'?",The situation where satellite data is abundant and free but remains inaccessible to those who need it most.
+Why is 'Software Complexity' considered a barrier to using satellite data?,Traditional GIS tools like ArcGIS have steep learning curves and high commercial license costs.
+What binary formats typically contain raw satellite imagery before processing?,"GeoTIFF, HDF archives, or SAFE format packages."
+How does EarthLens AI address the computational infrastructure requirements for processing regional imagery?,It integrates with Google Earth Engine to offload heavy computation to the cloud.
+What is the role of the 'Synthetic Generator' in EarthLens AI?,To generate realistic Sentinel-2 band data locally for development and testing without API credentials.
+"Layer 1 of the EarthLens architecture, responsible for fetching imagery, is the _____.",Data Pipeline
+What are the four primary tasks performed by the Preprocessing Engine (Layer 2)?,"Normalization, cloud masking, spatial resampling, and band stack assembly."
+"Layer 4 of the architecture, which renders maps and charts, is known as the _____.",Visualization Hub
+Why must Sentinel-2 SWIR bands be resampled during preprocessing in EarthLens AI?,To align their native $20$m resolution with the $10$m resolution of the optical bands.
+"What is the spatial resolution of Sentinel-2 optical bands (B02, B03, B04, B08)?",$10$ meters
+What is the spatial resolution of Landsat 8/9 bands?,$30$ meters
+Identify the wavelength associated with the Sentinel-2 Near-Infrared (NIR) band (B08).,$842$ nm
+Which spectral band (B12) is specifically used for NBR and UI indices with a wavelength of $2190$ nm?,SWIR-2
+Formula: Normalized Difference Vegetation Index (NDVI),$NDVI = \frac{B08 - B04}{B08 + B04}$
+Why do healthy plants reflect near-infrared light strongly and red light weakly?,They reflect NIR to prevent overheating and absorb red light for photosynthesis.
+"In NDVI classification, what range typically represents 'Dense Vegetation' like tropical forests?",$0.6 \rightarrow 1.0$
+"What NDVI range is associated with open water, ice, or snow cover?",$-1.0 \rightarrow 0.0$
+Formula: Normalized Difference Water Index (NDWI),$NDWI = \frac{B03 - B08}{B03 + B08}$
+Formula: Modified Normalized Difference Water Index (MNDWI),$MNDWI = \frac{B03 - B11}{B03 + B11}$
+Why does EarthLens AI use a dual-index masking approach (NDWI + MNDWI) for water detection?,To reduce urban false positives that frequently occur when using a single index.
+How many total spectral features per pixel are engineered for the land use classification pipeline?,$11$ features
+Formula: Enhanced Vegetation Index (EVI),$EVI = 2.5 \times \frac{NIR - Red}{NIR + 6 \times Red - 7.5 \times Blue + 1}$
+What is the specific strength of the Random Forest model in EarthLens's ML pipeline?,It provides the highest accuracy and handles non-linearity effectively.
+Formula: Normalized Difference Built-up Index (NDBI),$NDBI = \frac{B11 - B08}{B11 + B08}$
+"In NDVI Differencing ($\Delta V$), what value indicates significant vegetation loss from deforestation or drought?",$\Delta V < -0.2$
+Formula: Change Vector Analysis (CVA) Magnitude,$Magnitude = \sqrt{(NIR_{T2} - NIR_{T1})^2 + (Red_{T2} - Red_{T1})^2}$
+Why is Change Vector Analysis (CVA) superior to simple differencing for identifying change types?,It captures both the magnitude and directional signature of spectral changes.
+Formula: Normalized Burn Ratio (NBR),$NBR = \frac{B08 - B12}{B08 + B12}$
+How is the Difference Normalized Burn Ratio (dNBR) calculated for post-fire damage assessment?,$dNBR = NBR_{prefire} - NBR_{postfire}$
+"According to the USGS severity standard, what dNBR range indicates 'High Severity' burn area?",$> 0.66$
+Which index normalizes NDBI against vegetation and water signals for accurate urban extraction?,Index-based Built-up Index (IBI)
+Formula: Index-based Built-up Index (IBI),$IBI = \frac{NDBI - \frac{NDVI + MNDWI}{2}}{NDBI + \frac{NDVI + MNDWI}{2}}$
+Which Python library is used for the interactive web dashboard interface?,Streamlit
+Which library is utilized for geospatial map rendering within the dashboard?,Folium
+What Python library handles the reading and writing of GeoTIFF files in EarthLens?,Rasterio
+Which library provides the machine learning models like Random Forest and Decision Trees?,scikit-learn
+What tool is used for model serialization (saving/loading trained models) in the pipeline?,joblib
+Which library facilitates GEE Python utilities and interactive mapping?,geemap
+"In the data flow sequence, what is the output of the Preprocessing step?","A clean, analysis-ready band stack."
+How does healthy vegetation typically reflect SWIR-2 light compared to NIR light?,It reflects SWIR-2 weakly and NIR strongly.
+What spectral change signature is produced by fire-affected areas in the NBR calculation?,Reduced NIR reflectance and increased SWIR-2 reflectance.
+Which planned feature for Version 1.5 will use SAR data (Sentinel-1)?,Flood extent mapping
+What is the primary target of Version 2.0's research track for classification?,Deep learning (CNN-based pixel classification).
+The ability of the platform to work offline using synthetic data is called _____.,Progressive Complexity
+What is the primary Python library used for statistical visualizations like histograms and pie charts?,Plotly
+Which index is primarily used to track urban expansion by exploiting the contrast between SWIR and NIR?,NDBI
+Which specific satellite bands are used to calculate the Urban Index (UI)?,B12 (SWIR-2) and B08 (NIR).
+Which model is described as a baseline probabilistic model in the classification pipeline?,Logistic Regression
+"In the 'End-to-End' data flow, what is Step 1?","User Input (selecting modules, date range, and bounding box)."
+How many terabytes of data does the Copernicus programme generate daily?,Over $20$ terabytes.
+What does the 'Source Agnosticism' design principle imply for the analysis engine?,It receives normalized NumPy arrays regardless of the original data source.
+Which index classification identifies surface fire and minor damage with a range of $0.10 \rightarrow 0.27$?,Low Severity dNBR
+Which Python library is used for structured application logging in EarthLens AI?,Loguru
